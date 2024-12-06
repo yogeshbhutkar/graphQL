@@ -46,6 +46,15 @@ const resolvers = {
 		deleteGame( _, args ) {
 			db.games = db.games.filter( game => game.id !== args.id );
 			return db.games;
+		},
+		addGame( _, args ) {
+			const game = {
+				...args.game,
+				id: Math.floor( Math.random() * 10000 ).toString()
+			};
+
+			db.games.push( game );
+			return game;
 		}
 	}
 };
